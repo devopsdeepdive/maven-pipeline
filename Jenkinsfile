@@ -38,7 +38,7 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], user
     }
    stage('Notification-slack') {
             steps {
-               slackSend channel: '#prod_notifications', message: 'Build deployed succesfully'
+               slackSend channel: '#prod_notificatio', message: 'Build deployed succesfully'
         }
     }
   
