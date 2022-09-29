@@ -27,6 +27,16 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], user
       sh 'mvn package'
     }
   }
+  
+   stage('Deploy') {
+    steps {
+     sshagent(['jenkins-slave']) {
+    sh -o StrictHostKeyChecking=no '''scp /var/lib/jenkins/workspace/maven-deploy-pipeline/target/maven-web-application.war ubuntu@ec2-174-129-57-188.compute-1.amazonaws.com: /opt/apache-tomcat-8.5.82/webapps/
+'''
+}
+    }
+  }
+  
 
 }
 }
