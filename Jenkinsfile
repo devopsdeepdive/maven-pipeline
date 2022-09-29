@@ -36,11 +36,11 @@ checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], user
 
         }
     }
-   stage('Notify') {
-    steps {
-      sh slackSend channel: '#prod_notfications', color: '#439FE0', iconEmoji: ':)', message: 'My jenkins build successfully deployed ', teamDomain: 'devopsdeepdivebatch', tokenCredentialId: 'slack-integration'
+   stage('Notification-slack') {
+            steps {
+               slackSend channel: '#prod_notfications', color: '#439FE0', iconEmoji: ':)', message: 'My jenkins build successfully deployed ', teamDomain: 'devopsdeepdivebatch', tokenCredentialId: 'slack-integration'
+        }
     }
-  }
   
 
 }
