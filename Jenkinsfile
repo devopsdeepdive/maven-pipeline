@@ -4,8 +4,7 @@ pipeline {
 stages {
   stage('Checkout') {
     steps {
-      checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-user', url: 'https://github.com/devopsdeepdive/maven-deploy-project.git']]])
-    }
+checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-user', url: 'https://github.com/devopsdeepdive/maven-pipeline.git']]])    }
   }
   
   stage('Validate') {
@@ -18,9 +17,9 @@ stages {
       sh 'mvn compile'
     }
   }
-  stage('Test-Skip') {
+  stage('Test') {
     steps {
-      sh 'mvn install -Dmaven.test.skip=true'
+      sh 'mvn test'
     }
   }
   stage('Package') {
